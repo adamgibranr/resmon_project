@@ -3,6 +3,7 @@ import psutil
 import json
 import subprocess
 import time
+import sys
 
 # def get_kernel_info():
 #     return {
@@ -119,8 +120,20 @@ if __name__ == '__main__':
         "disk_io_counters": get_disk_io_counters(),
         "net_io_counters": get_net_io_counters(),
     }
-    print("="*40)
-    print("System Monitoring")
-    print("="*40)
-    print(json.dumps(data, indent=4))
+
+    data_type = sys.argv[1]
+    
+    if data_type == "cpu":
+        print(json.dumps(data["cpu_info"]))
+    elif data_type == "memory":
+        print(json.dumps(data["memory_info"]))
+    # print("="*40)
+    # print("System Monitoring")
+    # print("="*40)
+    # print(json.dumps(data, indent=4))
+    # print("Memori Info")
+    # print(json.dumps(data_memory, indent=4))
+    # print("CPU Info")
+    # print(json.dumps(data_cpu, indent=4))
+
 
